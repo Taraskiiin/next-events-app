@@ -5,10 +5,16 @@
 	background-color: #03be9f;
 	border: 1px solid #03be9f;
 	border-radius: 6px;
-	color: #dafff7;
 	padding: 0.5rem 1.5rem;
+	height: min-content;
 	text-align: center;
+	white-space: nowrap;
 	box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
+}
+
+.btn > a {
+	text-decoration: none;
+	color: #dafff7;
 }
 
 .btn:hover,

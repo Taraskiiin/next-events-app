@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import { getFeaturedEvents } from 'dummy-data';
 import WarningBox from '@/components/UI/WarningBox';
 import EventsList from '@/components/events/EventsList';
+import ResultsTitle from '@/components/events/ResultsTitle';
 
 function FilteredEventPage() {
 	const router = useRouter();
@@ -30,10 +31,14 @@ function FilteredEventPage() {
 		return <WarningBox message='No events found for the chosen filter' />;
 	}
 
+	const date = new Date(filteredYear, filteredMonth - 1);
+
 	return (
 		<>
+			<ResultsTitle date={date} />
 			<EventsList items={filteredEvents} />
 		</>
 	);
 }
+
 export default FilteredEventPage;

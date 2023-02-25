@@ -1,11 +1,12 @@
 .header {
-	width: 100%;
+	max-width: 100vw;
 	display: flex;
 	justify-content: space-between;
 	align-items: baseline;
 	padding: 1rem 10%;
 	height: 5rem;
 	background-color: #202020;
+	position: relative;
 }
 
 .logo {
@@ -22,6 +23,10 @@
 .logo a {
 	text-decoration: none;
 	color: #94fdfd;
+}
+
+.navigation > ul {
+	list-style: none;
 }
 
 .navigation a {

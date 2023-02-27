@@ -1,16 +1,11 @@
-import { useRouter } from 'next/router';
-
-import { getEventById } from '@/helpers/dummy-data';
+import { getEventById, getAllEvents } from '@/helpers/apiUtils';
 import WarningBox from '@/components/UI/WarningBox';
 import EventSummary from '@/components/enentsDetails/EventSummary';
 import EventContent from '@/components/enentsDetails/EventContent';
 import EventLogistics from '@/components/enentsDetails/EventLogistics';
 
-function EventDetailPage() {
-	const router = useRouter();
-
-	const eventId = router?.query?.eventId;
-	const event = getEventById(eventId);
+function EventDetailPage(props) {
+	const event = props.selectedEvent;
 
 	if (!event) {
 		return <WarningBox message='No event found!' />;
@@ -30,6 +25,26 @@ function EventDetailPage() {
 			</EventContent>
 		</>
 	);
+}
+
+export async function getStaticProps(context) {
+	const eventId = context.params.eventId;
+	const event = await getEventById(eventId);
+	return {
+		props: {
+			selectedEvent: event,
+		},
+	};
+}
+
+export async function getStaticPaths() {
+	const events = await getAllEvents();
+	const paths = events.map((event) => ({ params: { eventId: event.id } }));
+
+	return {
+		paths: paths,
+		fallback: false,
+	};
 }
 
 export default EventDetailPage;

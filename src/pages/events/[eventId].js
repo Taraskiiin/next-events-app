@@ -5,6 +5,7 @@ import Spinner from '@/components/UI/Spinner';
 import EventSummary from '@/components/eventsDetails/EventSummary';
 import EventContent from '@/components/eventsDetails/EventContent';
 import EventLogistics from '@/components/eventsDetails/EventLogistics';
+import Comments from '@/components/input/Comments';
 
 function EventDetailPage(props) {
 	const event = props.selectedEvent;
@@ -29,6 +30,7 @@ function EventDetailPage(props) {
 			<EventContent>
 				<p>{event?.description}</p>
 			</EventContent>
+			<Comments eventId={event?.id} />
 		</>
 	);
 }

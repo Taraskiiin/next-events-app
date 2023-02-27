@@ -1,14 +1,14 @@
-import { getEventById, getAllEvents } from '@/helpers/apiUtils';
-import WarningBox from '@/components/UI/WarningBox';
-import EventSummary from '@/components/enentsDetails/EventSummary';
-import EventContent from '@/components/enentsDetails/EventContent';
-import EventLogistics from '@/components/enentsDetails/EventLogistics';
+import { getAllEvents, getEventById } from '@/helpers/apiUtils';
+import Spinner from '@/components/UI/Spinner';
+import EventSummary from '@/components/eventsDetails/EventSummary';
+import EventContent from '@/components/eventsDetails/EventContent';
+import EventLogistics from '@/components/eventsDetails/EventLogistics';
 
 function EventDetailPage(props) {
 	const event = props.selectedEvent;
 
 	if (!event) {
-		return <WarningBox message='No event found!' />;
+		return <Spinner />;
 	}
 
 	return (
@@ -34,6 +34,7 @@ export async function getStaticProps(context) {
 		props: {
 			selectedEvent: event,
 		},
+		revalidate: 60,
 	};
 }
 
@@ -43,7 +44,7 @@ export async function getStaticPaths() {
 
 	return {
 		paths: paths,
-		fallback: false,
+		fallback: 'blocking',
 	};
 }
 

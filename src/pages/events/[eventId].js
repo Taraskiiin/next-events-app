@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 
-import { getEventById } from 'dummy-data';
+import { getEventById } from '@/helpers/dummy-data';
 import WarningBox from '@/components/UI/WarningBox';
 import EventSummary from '@/components/enentsDetails/EventSummary';
 import EventContent from '@/components/enentsDetails/EventContent';

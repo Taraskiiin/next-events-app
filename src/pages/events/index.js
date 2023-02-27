@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { getAllEvents } from 'dummy-data';
+import { getAllEvents } from '@/helpers/dummy-data';
 import EventsSearch from '@/components/events/EventsSearch';
 import EventList from '@/components/events/EventsList';
 

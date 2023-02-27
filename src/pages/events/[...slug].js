@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { getFeaturedEvents } from 'dummy-data';
+import { getFeaturedEvents } from '@/helpers/dummy-data';
 import WarningBox from '@/components/UI/WarningBox';
 import EventsList from '@/components/events/EventsList';
 import ResultsTitle from '@/components/events/ResultsTitle';

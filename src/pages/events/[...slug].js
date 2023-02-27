@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 
 import { getFeaturedEvents } from '@/helpers/apiUtils';
 import WarningBox from '@/components/UI/WarningBox';
@@ -31,18 +32,45 @@ function FilteredEventPage() {
 		fetchData();
 	}, []);
 
+	let pageHeadData = (
+		<Head>
+			<title>filtered-events</title>
+			<meta name='description' content='A list of filtered events.' />
+		</Head>
+	);
+
 	if (!loadedEvents) {
-		return <Spinner />;
+		return (
+			<>
+				{pageHeadData}
+				<Spinner />
+			</>
+		);
 	}
 
 	const filteredYear = +filterData[0];
 	const filteredMonth = +filterData[1];
 
+	pageHeadData = (
+		<Head>
+			<title>filtered-events</title>
+			<meta
+				name='description'
+				content={`All events for ${filteredMonth}/${filteredYear}`}
+			/>
+		</Head>
+	);
+
 	if (
 		isNaN(filteredYear) ||
 		isNaN(filteredMonth || filteredMonth < 1 || filteredMonth > 12 || error)
 	) {
-		return <WarningBox message='Invalid filter. Please adjust your values!' />;
+		return (
+			<>
+				{pageHeadData}
+				<WarningBox message='Invalid filter. Please adjust your values!' />
+			</>
+		);
 	}
 
 	const filteredEvents = loadedEvents.filter((event) => {
@@ -54,13 +82,19 @@ function FilteredEventPage() {
 	});
 
 	if (!filteredEvents || filteredEvents.length === 0) {
-		return <WarningBox message='No events found for the chosen filter' />;
+		return (
+			<>
+				{pageHeadData}
+				<WarningBox message='No events found for the chosen filter' />
+			</>
+		);
 	}
 
 	const date = new Date(filteredYear, filteredMonth - 1);
 
 	return (
 		<>
+			{pageHeadData}
 			<ResultsTitle date={date} />
 			<EventsList items={filteredEvents} />
 		</>

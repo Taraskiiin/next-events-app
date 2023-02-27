@@ -1,9 +1,18 @@
+import Head from 'next/head';
+
 import EventsList from '@/components/events/EventsList';
 import { getFeaturedEvents } from '@/helpers/apiUtils';
 
 export default function Home(props) {
 	return (
 		<>
+			<Head>
+				<title>nextJS-events</title>
+				<meta
+					name='description'
+					content='Find a lot of events that allow you to evolve...'
+				/>
+			</Head>
 			<EventsList items={props.events} />
 		</>
 	);

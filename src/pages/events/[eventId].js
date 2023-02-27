@@ -1,4 +1,6 @@
 import { getAllEvents, getEventById } from '@/helpers/apiUtils';
+import Head from 'next/head';
+
 import Spinner from '@/components/UI/Spinner';
 import EventSummary from '@/components/eventsDetails/EventSummary';
 import EventContent from '@/components/eventsDetails/EventContent';
@@ -13,6 +15,10 @@ function EventDetailPage(props) {
 
 	return (
 		<>
+			<Head>
+				<title>{event?.title}</title>
+				<meta name='description' content={event?.description} />
+			</Head>
 			<EventSummary title={event?.title} />
 			<EventLogistics
 				date={event?.date}

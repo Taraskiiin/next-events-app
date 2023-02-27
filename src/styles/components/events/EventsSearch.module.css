@@ -5,7 +5,8 @@
 	background-color: white;
 	border-radius: 6px;
 	width: 90%;
-	max-width: 40rem;
+	max-width: 50rem;
+	margin: 5rem auto;
 	display: flex;
 	justify-content: space-between;
 	flex-direction: column;

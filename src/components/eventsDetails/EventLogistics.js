@@ -6,7 +6,7 @@ import LogisticsItem from './LogisticsItem';
 
 import styles from '@/styles/components/enentsDetails/EventLogistics.module.css';
 
-function EventLogistics({ date, address, image, imageAlt }) {
+function EventLogistics({ date, address, image, imageAlt = 'event image' }) {
 	const humanReadableDate = new Date(date).toLocaleDateString('en-US', {
 		day: 'numeric',
 		month: 'long',

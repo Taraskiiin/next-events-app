@@ -34,13 +34,16 @@ function Comments(props) {
 			},
 		}).then((response) => response.json());
 	}
+
 	return (
 		<section className={styles.comments}>
 			<button onClick={toggleCommentsHandler}>
 				{showComments ? 'Hide' : 'Show'} Comments
 			</button>
 			{showComments && <NewComment onAddComment={addCommentHandler} />}
-			{showComments && <CommentList items={comments} />}
+			{showComments && comments.length !== 0 ? (
+				<CommentList items={comments} />
+			) : null}
 		</section>
 	);
 }

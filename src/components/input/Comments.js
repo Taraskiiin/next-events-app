@@ -15,7 +15,7 @@ function Comments(props) {
 		if (showComments) {
 			fetch('/api/comments/' + eventId).then((response) =>
 				response.json().then((data) => {
-					setComments(data.mockList);
+					setComments(data.comments);
 				})
 			);
 		}
@@ -32,9 +32,7 @@ function Comments(props) {
 			headers: {
 				'Content-Type': 'application/json',
 			},
-		})
-			.then((response) => response.json())
-			.then((data) => console.log(data));
+		}).then((response) => response.json());
 	}
 	return (
 		<section className={styles.comments}>

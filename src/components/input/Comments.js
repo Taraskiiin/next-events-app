@@ -13,9 +13,11 @@ function Comments(props) {
 
 	useEffect(() => {
 		if (showComments) {
-			fetch('api/comments' + eventId)
-				.then((response) => response.json())
-				.then((data) => setComments(data.mockList));
+			fetch('/api/comments/' + eventId).then((response) =>
+				response.json().then((data) => {
+					setComments(data.mockList);
+				})
+			);
 		}
 	}, [showComments]);
 
@@ -24,7 +26,7 @@ function Comments(props) {
 	}
 
 	function addCommentHandler(commentData) {
-		fetch('api/comments/' + eventId, {
+		fetch('/api/comments/' + eventId, {
 			method: 'POST',
 			body: JSON.stringify(commentData),
 			headers: {
@@ -32,9 +34,8 @@ function Comments(props) {
 			},
 		})
 			.then((response) => response.json())
-			.then((data) => console.log(data.message));
+			.then((data) => console.log(data));
 	}
-
 	return (
 		<section className={styles.comments}>
 			<button onClick={toggleCommentsHandler}>

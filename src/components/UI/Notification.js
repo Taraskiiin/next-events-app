@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import ScaleLoader from 'react-spinners/ScaleLoader';
 
 import styles from '@/styles/components/UI/Notification.module.css';
 import NotificationContext from '@/store/NotificationContext';
@@ -26,7 +27,18 @@ function Notification(props) {
 
 	return (
 		<div className={activeClasses} onClick={notificationCtx.hideNotification}>
-			<h2>{title}</h2>
+			{status === 'pending' ? (
+				<ScaleLoader
+					height={50}
+					width={10}
+					radius={8}
+					color={'#fff'}
+					aria-label='Loading Spinner'
+					data-testid='loader'
+				/>
+			) : (
+				<h2>{title}</h2>
+			)}
 			<p>{message}</p>
 		</div>
 	);

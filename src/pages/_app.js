@@ -1,13 +1,14 @@
 import Layout from '@/components/layout/Layout';
+import { NotificationContextProvider } from '@/store/NotificationContext';
 
-import Notification from '@/components/UI/Notification';
 import '@/styles/globals.css';
 
 export default function App({ Component, pageProps }) {
 	return (
-		<Layout>
-			<Component {...pageProps} />
-			<Notification title='test' message='this is a test.' start='pending' />
-		</Layout>
+		<NotificationContextProvider>
+			<Layout>
+				<Component {...pageProps} />
+			</Layout>
+		</NotificationContextProvider>
 	);
 }

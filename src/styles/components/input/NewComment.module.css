@@ -35,6 +35,7 @@
 	border: 1px solid #ccc;
 	width: 100%;
 	background-color: #dcfff9;
+	resize: none;
 }
 
 .form button {
